@@ -21,7 +21,6 @@ abstract class _UserStore with Store {
   @action
   initStore()async {
     userList = await PreferencesService().getAllUser() as List<User>;
-    print('object');
     print(userList);
   }
 
