@@ -3,7 +3,6 @@
 A Flutter project using- 
 
 - Mobx -> [For state management](https://mobx.netlify.app/)
-- Isar -> [Local database](https://isar.dev/tutorials/quickstart.html)
 - Localization -> [I10n](https://docs.flutter.dev/accessibility-and-localization/internationalization)
 
 ## Getting Started
