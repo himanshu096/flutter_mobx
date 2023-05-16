@@ -1,6 +1,4 @@
-import 'package:isar/isar.dart';
-import 'package:mobx_flutter/model/user/user.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class PreferencesService {
@@ -8,42 +6,23 @@ class PreferencesService {
 
   factory PreferencesService() => _instance;
 
-  late Isar _isar;
-
   static final PreferencesService _instance = PreferencesService._internal();
+
+  static const auth_token = "auth_token";
+
+  Future<SharedPreferences> _getInstance() async {
+    return SharedPreferences.getInstance();
+  }
 
   String getToken() {
     return 'test_token';
   }
 
-  Future<void> initializeIsar() async {
-    final dir = await getApplicationDocumentsDirectory();
-    _isar = await Isar.open(
-      [UserSchema],
-      directory: dir.path
-    );
+  setAuthToken(String token) async {
+    (await _getInstance()).setString(PreferencesService.auth_token, token);
   }
 
-  //Add User to DB
-  Future<void> addUser(User user) async {
-    await _isar.writeTxn(() async {
-      _isar.users.put(user); // insert & update
-    });
+  Future<String?> getAuthToken() async {
+    return (await _getInstance()).getString(PreferencesService.auth_token);
   }
-
-  //Get User from DB
-  Future<User?> getUser(int id) async {
-    return await _isar.users.get(id);
-  }
-
-  //Get User from DB
-  Future<List<User?>> getAllUser() async {
-    return await _isar.users.where().findAll();
-  }
-
-  //Delete User from DB
-  Future<bool> deleteUser(int id) async {
-    return await _isar.users.delete(id);
-  }
-
 }

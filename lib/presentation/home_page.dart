@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
                   Container(color: const Color(0xFF2DBD3A)),
                   Text(store.userList.length.toString()),
                   ElevatedButton(onPressed: () {
-                    store.addUser(User(firstName: 'test'));
+                    store.addUser(User(firstName: 'test', id: 2));
                   },
                   child: const Text('Add random user'),),
                 ],

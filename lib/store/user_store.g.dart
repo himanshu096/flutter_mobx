@@ -25,14 +25,6 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  late final _$initStoreAsyncAction =
-      AsyncAction('_UserStore.initStore', context: context);
-
-  @override
-  Future initStore() {
-    return _$initStoreAsyncAction.run(() => super.initStore());
-  }
-
   late final _$addUserAsyncAction =
       AsyncAction('_UserStore.addUser', context: context);
 

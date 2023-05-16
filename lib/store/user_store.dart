@@ -10,23 +10,12 @@ class UserStore = _UserStore with _$UserStore;
 
 abstract class _UserStore with Store {
 
-  _UserStore(){
-    initStore();
-  }
-
   @observable
   List<User> userList = [];
 
-
-  @action
-  initStore()async {
-    userList = await PreferencesService().getAllUser() as List<User>;
-    print(userList);
-  }
-
   @action
   Future<void> addUser(User user) async {
-    PreferencesService().addUser(user);
+    PreferencesService().setAuthToken('user');
     userList = [...userList, user];
   }
 

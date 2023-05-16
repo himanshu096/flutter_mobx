@@ -1,12 +1,11 @@
-import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
 @JsonSerializable()
-@Collection()
+
 class User {
-  Id id = Isar.autoIncrement;
+  int id;
 
   late String firstName;
 
@@ -16,7 +15,7 @@ class User {
 
   late DateTime? updatedAt;
 
-  User({required this.firstName, this.lastName, this.createdAt, this.updatedAt});
+  User({required this.id, required this.firstName, this.lastName, this.createdAt, this.updatedAt});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
